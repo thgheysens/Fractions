@@ -11,7 +11,6 @@ class Fraction:
     def __init__(self, num=0, den=1):
         """
         PRE: num est un entier
-             den est un entier different de 0
         POST:initialise la fraction
         RAISE: ZeroDivisionError si den==0
         """
@@ -35,6 +34,7 @@ class Fraction:
                     pgcd = divisor
             self._num = num // pgcd
             self._den = den // pgcd
+
 
 
     @property
@@ -86,7 +86,7 @@ class Fraction:
     def __add__(self, other):
         """Surcharge de l'opérateur + pour les fractions.
 
-         PRE : other doit être une instance de Fraction
+         PRE :
          POST : retourne la somme des 2 fractions sous forme de fraction.
          RAISE: TypeError si other n'est pas une instance de fraction
          """
@@ -99,7 +99,7 @@ class Fraction:
     def __sub__(self, other):
         """Surcharge de l'opérateur - pour les fractions.
 
-        PRE : other doit être une instance de Fraction
+        PRE :
         POST : retourne la différence des 2 fractions sous forme de fraction
         RAISE: TypeError si other n'est pas une instance de fraction
         """
@@ -107,12 +107,14 @@ class Fraction:
             raise TypeError("L'autre opérande doit être une instance de Fraction.")
         new_den = self._den * other._den
         new_num = self._num * other._den - other._num * self._den
+        if new_num == 0:
+            return Fraction(new_num, 1)
         return Fraction(new_num, new_den)
 
     def __mul__(self, other):
         """Surcharge de l'opérateur * pour les fractions.
 
-        PRE : other doit être une instance de Fraction
+        PRE :
         POST : retourne la multiplication des 2 fractions sous forme de fraction
         RAISE: TypeError si other n'est pas une instance de fraction
 
@@ -121,12 +123,14 @@ class Fraction:
             raise TypeError("L'autre opérande doit être une instance de Fraction.")
         new_den = self._den * other._den
         new_num = self._num * other._num
+        if new_num == 0:
+            return Fraction(new_num, 1)
         return Fraction(new_num, new_den)
 
     def __truediv__(self, other):
         """Surcharge de l'opérateur / pour les fractions.
 
-        PRE : other doit être une instance de Fraction
+        PRE :
         POST : retounre la division des 2 fractions sous forme de fraction
         RAISE: TypeError si other n'est pas une instance de fraction
                 ZeroDivisionError si other à un numérateur qui vaut 0.
@@ -142,7 +146,7 @@ class Fraction:
     def __pow__(self, other):
         """Surcharge de l'opérateur ** pour les fractions.
 
-        PRE : other doit etre un entier
+        PRE :
         POST : retounre la fraction élévé à une certaine puissance
         RAISE: TypeError si other n'est pas une instance de fraction
         """
@@ -160,7 +164,7 @@ class Fraction:
     def __eq__(self, other):
         """Surcharge de l'opérateur == pour les fractions.
 
-        PRE : other doit être une instance de Fraction
+        PRE :
         POST : retourne true ou false si les 2 fractions sont identique ou non.
         RAISE: TypeError si other n'est pas une instance de fraction
         """
@@ -215,7 +219,7 @@ class Fraction:
     def is_adjacent_to(self, other):
         """Vérifie si deux fractions diffèrent par une fraction unitaire.
 
-        PRE : other doit être une instance de la classe fraction
+        PRE : 
         POST : retourne true si 2 fractions sont adjacents, soit si la différence des ces 2 fractions est une fraction unitaire
         """
         if not isinstance(other, Fraction):
@@ -226,3 +230,4 @@ class Fraction:
         result=(frac-secfrac)
 
         return result.is_unit()
+
