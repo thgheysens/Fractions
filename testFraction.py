@@ -41,23 +41,53 @@ class TestFraction(TestCase):
     def test_operations(self):
         # Addition
         self.assertEqual(Fraction(1, 2) + Fraction(1, 3), Fraction(5, 6))
-        self.assertEqual(Fraction(1, 2) + Fraction(0, 3), Fraction(1, 2))
-        self.assertEqual(Fraction(1, 2) + Fraction(-1, 3), Fraction(1, 6))
+        self.assertEqual(Fraction(1, 4) + Fraction(1, 4), Fraction(1, 2))
+        self.assertEqual(Fraction(-1, 3) + Fraction(1, 2), Fraction(1, 6))
+        self.assertEqual(Fraction(0, 1) + Fraction(2, 5), Fraction(2, 5))
+        self.assertEqual(Fraction(3, 7) + Fraction(-2, 7), Fraction(1, 7))
+        self.assertEqual(Fraction(1, 3) + Fraction(-3, 3), Fraction(-2, 3))
+        self.assertEqual(Fraction(-1, 2) + Fraction(-1, 2), Fraction(-1, 1))
+        self.assertEqual(Fraction(7, 10) + Fraction(3, 5), Fraction(13, 10))
 
         # Soustraction
         self.assertEqual(Fraction(3, 4) - Fraction(1, 2), Fraction(1, 4))
+        self.assertEqual(Fraction(-3, 4) - Fraction(-1, 2), Fraction(-1, 4))
+        self.assertEqual(Fraction(1, 3) - Fraction(1, 3), Fraction(0, 1))
+        self.assertEqual(Fraction(0, 1) - Fraction(2, 5), Fraction(-2, 5))
+        self.assertEqual(Fraction(5, 6) - Fraction(2, 3), Fraction(1, 6))
+        self.assertEqual(Fraction(-1, 3) - Fraction(-1, 3), Fraction(0, 1))
+        self.assertEqual(Fraction(7, 10) - Fraction(3, 5), Fraction(1, 10))
+        self.assertEqual(Fraction(-7, 10) - Fraction(-3, 5), Fraction(-1, 10))
 
         # Multiplication
-        self.assertEqual(Fraction(2, 3) * Fraction(3, 4), Fraction(1, 2))
+        self.assertEqual(Fraction(1, 2) * Fraction(1, 3), Fraction(1, 6))
+        self.assertEqual(Fraction(-2, 5) * Fraction(3, 7), Fraction(-6, 35))
+        self.assertEqual(Fraction(0, 1) * Fraction(5, 6), Fraction(0, 1))
+        self.assertEqual(Fraction(4, 9) * Fraction(-3, 8), Fraction(-1, 6))
+        self.assertEqual(Fraction(2, 3) * Fraction(2, 3), Fraction(4, 9))
+        self.assertEqual(Fraction(-1, 4) * Fraction(-1, 2), Fraction(1, 8))
+        self.assertEqual(Fraction(7, 10) * Fraction(3, 5), Fraction(21, 50))
+        self.assertEqual(Fraction(-1, 10) * Fraction(5, 1), Fraction(-1, 2))
 
         # Division
-        self.assertEqual(Fraction(3, 4) / Fraction(3, 2), Fraction(1, 2))
-        self.assertEqual(Fraction(3, 4) / Fraction(-3, 2), Fraction(-1, 2))
-        self.assertRaises(ZeroDivisionError, lambda: Fraction(1, 2) / Fraction(0, 1))
+        self.assertEqual(Fraction(1, 2) / Fraction(1, 3), Fraction(3, 2))
+        self.assertEqual(Fraction(-2, 5) / Fraction(3, 7), Fraction(-14, 15))
+        self.assertEqual(Fraction(4, 9) / Fraction(-3, 8), Fraction(-32, 27))
+        self.assertEqual(Fraction(2, 3) / Fraction(2, 3), Fraction(1, 1))
+        self.assertEqual(Fraction(-1, 4) / Fraction(-1, 2), Fraction(1, 2))
+        self.assertEqual(Fraction(7, 10) / Fraction(3, 5), Fraction(7, 6))
+        self.assertEqual(Fraction(1, 10) / Fraction(5, 1), Fraction(1, 50))
+        self.assertEqual(Fraction(-1, 10) / Fraction(1, 2), Fraction(-1, 5))
 
         # Puissance
-        self.assertEqual(Fraction(1, 2)**2, Fraction(1,4))
-        self.assertEqual(Fraction(1, 2) ** -2, Fraction(4, 1))
+        self.assertEqual(Fraction(1, 2) ** 2, Fraction(1, 4))
+        self.assertEqual(Fraction(-2, 3) ** 2, Fraction(4, 9))
+        self.assertEqual(Fraction(-2, 3) ** 3, Fraction(-8, 27))
+        self.assertEqual(Fraction(4, 5) ** 0, Fraction(1, 1))
+        self.assertEqual(Fraction(-3, 2) ** 1, Fraction(-3, 2))
+        self.assertEqual(Fraction(3, 4) ** -1, Fraction(4, 3))
+        self.assertEqual(Fraction(-1, 5) ** -2, Fraction(25, 1))
+        self.assertEqual(Fraction(7, 8) ** -1, Fraction(8, 7))
 
         # Test des erreurs
         self.assertRaises(TypeError, lambda: Fraction(1, 2) + 5)
